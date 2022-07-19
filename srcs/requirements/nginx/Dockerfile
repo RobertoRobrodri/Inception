@@ -6,7 +6,7 @@ RUN apt-get update \
 
 RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=robrodri.42.ft" -addext "subjectAltName=DNS:robrodri.42.fr" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
 
-COPY start.sh .
+COPY /tools/start.sh .
 
 COPY default.conf /etc/nginx/nginx.conf
 
