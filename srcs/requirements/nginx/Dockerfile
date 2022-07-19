@@ -8,7 +8,7 @@ RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=rob
 
 COPY start.sh .
 
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/nginx.conf
 
 #CMD ["service", "nginx", "start"]
 
