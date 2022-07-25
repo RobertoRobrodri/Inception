@@ -1,6 +1,41 @@
 services :
   nginx:
     build: requirements/nginx/
+    container_name: nginx
     ports:
       - "80:80"
-      - "443:443" 
+      - "443:443"
+    volumes:
+      - webserver:
+  mariadb:
+    build: requirements/mariadb/
+    container_name: mariadb
+    environment:
+      MYSQL_ADMIN_USER: ${MYSQL_ADMIN_USER}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql:
+  wordpress:
+    build: requirements/wordpress/
+    container_name: wordpress
+    ports:
+      - "9000:9000"
+    volumes:
+      - webserver:
+volumes:
+  webserver:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/robrodri/data'
+  mysql:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/robrodri/data'
