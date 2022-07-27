@@ -6,8 +6,9 @@ services :
       - "80:80"
       - "443:443"
     volumes:
-      - webserver:
+      - webserver:/var/www/html/
   mariadb:
+    tty: true
     build: requirements/mariadb/
     container_name: mariadb
     environment:
@@ -18,14 +19,15 @@ services :
     ports:
       - "3306:3306"
     volumes:
-      - mysql:
+      - mysql:/var/lib/mysql/
   wordpress:
+    tty: true
     build: requirements/wordpress/
     container_name: wordpress
     ports:
       - "9000:9000"
     volumes:
-      - webserver:
+      - webserver:/var/www/html
 volumes:
   webserver:
     driver: local
