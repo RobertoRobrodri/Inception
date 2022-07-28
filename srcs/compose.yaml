@@ -34,10 +34,10 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/robrodri/data'
+      device: '/home/robrodri/data/webserver'
   mysql:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/robrodri/data'
+      device: '/home/robrodri/data/mysql'
