@@ -8,7 +8,6 @@ services :
     volumes:
       - webserver:/var/www/html/
   mariadb:
-    tty: true
     build: requirements/mariadb/
     container_name: mariadb
     environment:
