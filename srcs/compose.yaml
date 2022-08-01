@@ -5,6 +5,7 @@ services :
     ports:
       - "80:80"
       - "443:443"
+    restart: always
     volumes:
       - webserver:/var/www/html/
     networks:
@@ -19,6 +20,7 @@ services :
       - .env
     ports:
       - "9000:9000"
+    restart: always
     volumes:
       - webserver:/var/www/html
     networks:
@@ -33,6 +35,7 @@ services :
       - .env
     ports:
       - "3306:3306"
+    restart: always
     volumes:
       - mysql:/var/lib/mysql/
     networks:

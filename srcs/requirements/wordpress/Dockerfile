@@ -11,4 +11,8 @@ RUN wget https://wordpress.org/latest.tar.gz && mv latest.tar.gz /tmp && tar xf 
 #Se los guarda en la carpeta temporal. El script chequea si existe el html y si no, procede a mover los archivos al directorio, el cual ya se comparte con nginx
 COPY /tools/configure.sh .
 
+COPY /tools/env_setup.sh .
+
+CMD ["./env_setup.sh"]
+
 CMD ["./configure.sh"]
