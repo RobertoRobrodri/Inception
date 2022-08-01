@@ -2,7 +2,7 @@
 
 service mysql start
 
-mysql -e "CREATE DATABASE IF NOT EXISTS my_wp_database;"
+mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
 
 if [[ $(mysql -e "SELECT user FROM mysql.user WHERE user = '${MYSQL_ADMIN_USER}';") == "user" ]]
 
