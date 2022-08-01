@@ -1,12 +1,17 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get install -y wordpress
+#Esto instala mucha mierda innecesaria y no php-fpm que nos piden. Aunque funciona
+#RUN apt-get update && apt-get install -y wordpress
 
-#RUN apt-get update && apt-get install -y php-cgi php-common php-fpm php-pear php-mbstring php-zip php-net-socket php-gd php-xml-util php-gettext php-mysql php-bcmath unzip wget
+RUN apt-get update && apt-get install -y php7.3 php-mysqli php-fpm wget
 
-#RUN cd /var/www/html/ && wget https://wordpress.org/latest.tar.gz && tar -xvzf latest.tar.gz
+RUN mkdir var/html
 
-COPY /tools/configure.sh .
+#Tiene que mover los ficheros una vez se ha establecido el volumen de manera que apunten al mismo lado
+#RUN wget https://wordpress.org/latest.tar.gz && tar xf latest.tar.gz
+
+#Se los guarda en la carpeta temporal. El script chequea si existe el html y si no, procede a mover los archivos al directorio, el cual ya se comparte con nginx
+#COPY /tools/configure.sh /var/www/html/
 
 COPY /tools/while.sh .
 
