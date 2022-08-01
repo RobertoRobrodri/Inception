@@ -6,6 +6,4 @@ COPY	/tools/configure.sh .
 
 #COPY	/tools/configure_debug.sh configure.sh
 
-EXPOSE	3306
-
 CMD ["./configure.sh"]

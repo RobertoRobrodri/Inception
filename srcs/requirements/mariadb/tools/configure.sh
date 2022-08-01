@@ -2,6 +2,8 @@
 
 service mysql start
 
+mysql -e "CREATE DATABASE IF NOT EXISTS my_wp_database;"
+
 if [[ $(mysql -e "SELECT user FROM mysql.user WHERE user = '${MYSQL_ADMIN_USER}';") == "user" ]]
 
 then
@@ -18,6 +20,7 @@ then
 mysql -e "CREATE USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';"
 fi
 
+mysql -e "FLUSH PRIVILEGES"
 #mysql -e "REVOKE ALL PRIVILEGES FROM '${MYSQL_USER}';"
 
 while true; do sleep 1d; done

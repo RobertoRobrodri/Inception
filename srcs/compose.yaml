@@ -7,6 +7,23 @@ services :
       - "443:443"
     volumes:
       - webserver:/var/www/html/
+    networks:
+      - frontend
+    depends_on:
+      - "wordpress"
+  wordpress:
+    tty: true
+    build: requirements/wordpress/
+    container_name: wordpress
+    ports:
+      - "9000:9000"
+    volumes:
+      - webserver:/var/www/html
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - "mariadb"
   mariadb:
     build: requirements/mariadb/
     container_name: mariadb
@@ -19,14 +36,8 @@ services :
       - "3306:3306"
     volumes:
       - mysql:/var/lib/mysql/
-  wordpress:
-    tty: true
-    build: requirements/wordpress/
-    container_name: wordpress
-    ports:
-      - "9000:9000"
-    volumes:
-      - webserver:/var/www/html
+    networks:
+      - backend
 volumes:
   webserver:
     driver: local
@@ -40,3 +51,6 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/robrodri/data/mysql'
+networks:
+  frontend:
+  backend:
