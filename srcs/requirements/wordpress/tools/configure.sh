@@ -7,10 +7,5 @@ sed -i "s/password_here/$MYSQL_PASSWORD/g" /tmp/wordpress/wp-config-sample.php
 cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
 rm -rf tmp/wordpress/wp-config-sample.php
 
-if [ "ls -A /var/www/html" ]
-then
-	echo "Directory not empty"
-else
-	mv tmp/wordpress /var/www/html
-fi
+mv tmp/wordpress /var/www/html
 while true; do sleep 1d; done

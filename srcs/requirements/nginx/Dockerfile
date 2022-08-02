@@ -6,10 +6,8 @@ RUN apt-get update \
 
 RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=42Madrid, Inc./CN=robrodri.42.fr" -addext "subjectAltName=DNS:robrodri.42.fr" -newkey rsa:2048 -keyout /etc/ssl/private/robrodri.key -out /etc/ssl/certs/robrodri.crt
 
-#Sustituir la conf por defecto por la mía. No funciona todavía
-#COPY default.conf /etc/nginx/nginx.conf
+RUN rm -rf /etc/nginx/sites-enabled/*
 
-#Mete en la carpeta conf.d la configuración propia, dejando intacta la que viene por defecto
 COPY default.conf /etc/nginx/conf.d/
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
