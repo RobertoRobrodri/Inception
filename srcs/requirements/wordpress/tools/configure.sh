@@ -8,4 +8,5 @@ rm -rf tmp/wordpress/wp-config-sample.php
 
 #Deberias cambiar esto y comprobar el directorio
 mv -f tmp/wordpress /var/www/html
+
 exec php-fpm7.3 --nodaemonize
