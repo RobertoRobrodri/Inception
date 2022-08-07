@@ -22,6 +22,4 @@ fi
 
 mysql -e "FLUSH PRIVILEGES"
 #mysql -e "REVOKE ALL PRIVILEGES FROM '${MYSQL_USER}';"
-
 while true; do sleep 1d; done
-

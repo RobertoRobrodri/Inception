@@ -7,6 +7,9 @@ cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
 rm -rf tmp/wordpress/wp-config-sample.php
 
 #Deberias cambiar esto y comprobar el directorio
-mv -f tmp/wordpress /var/www/html
-
+if [ ! -d "/var/www/html/wordpress" ]
+then
+	mv -f tmp/wordpress /var/www/html
+	echo "Created"
+fi
 exec php-fpm7.3 --nodaemonize
