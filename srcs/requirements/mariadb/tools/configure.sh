@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#/etc/init.d/mysql start
-
 service mysql start
 
 mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
@@ -15,3 +13,9 @@ mysql -e "CREATE USER IF NOT EXISTS '${MYSQL_USER}' IDENTIFIED BY '${MYSQL_PASSW
 mysql -e "GRANT ALL PRIVILEGES ON *.* TO '${MYSQL_USER}' IDENTIFIED BY '${MYSQL_PASSWORD}';"
 
 mysql -e "FLUSH PRIVILEGES"
+
+service mysql stop
+
+mysqld
+
+# Si no tiene espacio la maquina se va a quejar de los sockets

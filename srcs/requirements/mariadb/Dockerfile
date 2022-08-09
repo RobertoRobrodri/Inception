@@ -6,6 +6,4 @@ COPY	/tools/50-server.cnf etc/mysql/mariadb.conf.d/
 
 COPY	/tools/configure.sh .
 
-RUN	./configure.sh
-
-CMD ["mysqld"]
+CMD ["./configure.sh"]
