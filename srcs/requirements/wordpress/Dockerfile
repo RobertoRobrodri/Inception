@@ -6,8 +6,6 @@ RUN	apt-get update && apt-get install -y php7.3 php7.3-mysqli php7.3-fpm wget ma
 
 COPY	/tools/www.conf /etc/php/7.3/fpm/pool.d
 
-COPY	/tools/wp-config.php /tmp/
-
 RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
 COPY	/tools/configure.sh .
