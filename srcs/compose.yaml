@@ -3,8 +3,8 @@ services :
   nginx:
     build: requirements/nginx/
     container_name: nginx
-      #    ports:
-      #      - "443:443"
+    ports:
+      - "443:443"
     restart: always
     volumes:
       - webserver:/var/www/html/
@@ -19,7 +19,7 @@ services :
     env_file:
       - .env
         #    ports:
-        #        - "9000:9000"
+        #      - "9000:9000"
     restart: always
     volumes:
       - webserver:/var/www/html
@@ -29,12 +29,16 @@ services :
     depends_on:
       - "mariadb"
   mariadb:
-    build: requirements/mariadb/
+    build:
+      context: requirements/mariadb/
+      args:
+        DB_NAME: ${DB_NAME}
+        MYSQL_ADMIN_USER: ${MYSQL_ADMIN_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     container_name: mariadb
-    env_file:
-      - .env
-        #    ports:
-        #      - "3306:3306"
+      #    ports:
+      #      - "3306:3306"
     restart: always
     volumes:
       - mysql:/var/lib/mysql/
