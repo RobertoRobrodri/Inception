@@ -8,6 +8,6 @@ RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=42Madrid, Inc./CN=ro
 
 RUN rm -rf /etc/nginx/sites-enabled/*
 
-COPY default.conf /etc/nginx/conf.d/
+COPY tools/default.conf /etc/nginx/conf.d/
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
