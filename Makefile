@@ -4,7 +4,8 @@ WEBSERVER_NAME 		= webserver
 SRCS_PREFIX		= srcs_
 MYSQL_VOLUME		= ${addprefix ${SRCS_PREFIX}, ${MYSQL_NAME}}
 WEBSERVER_VOLUME	= ${addprefix ${SRCS_PREFIX}, ${WEBSERVER_NAME}}
-DATA_DIR		= ${HOME}/data/
+DATA_PATH		= /home/${USER}
+DATA_DIR		= ${DATA_PATH}/data/
 MYSQL_DIR		= ${addprefix ${DATA_DIR}, ${MYSQL_NAME}}
 WEBSERVER_DIR		= ${addprefix ${DATA_DIR}, ${WEBSERVER_NAME}}
 
@@ -23,11 +24,14 @@ ${DATA_DIR}:
 
 down:
 	docker compose -f  ${COMPOSEPATH} down
+
 fclean: down clean
-	docker volume rm srcs_mysql
-	docker volume rm srcs_webserver
+	docker volume rm ${MYSQL_VOLUME}
+	docker volume rm ${WEBSERVER_VOLUME}
+
 clean:
 	docker image prune -a -f
+
 rmdata:
 	rm -rf ${MYSQL_DIR}
 	rm -rf ${WEBSERVER_DIR}
