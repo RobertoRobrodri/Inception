@@ -2,7 +2,7 @@ FROM	debian:buster
 
 RUN	mkdir -p /run/php
 
-RUN	apt-get update && apt-get install -y php7.3 php7.3-mysqli php7.3-fpm wget mariadb-client sendmail
+RUN	apt-get update && apt-get install -y php7.3 php7.3-mysqli php7.3-fpm wget mariadb-client
 
 COPY	/tools/www.conf /etc/php/7.3/fpm/pool.d
 
